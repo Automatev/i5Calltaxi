@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i5CallTaxi | Booking Page</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="selecttaxi.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+        #active{
+            display: none;
+        }
+        .wrapper{
+            display: none;
+        }
+        i::before{
+            display: none;
+        }
+        /* p{
+          margin: 0;padding: 0;
+        } */
+        .footer{
+            transform: translateY(10%);
+        }
+
+        @media only screen and (max-width: 800px){
+        body{
+            box-sizing: content-box;
+            margin: 0;padding: 0;
+        }
+        i::before{
+            display: block;
+        }
+        /* 
+        .wrapper{
+            display: block;
+        } */
+        .wrapper{
+          position: fixed;
+          display: flex;
+          top: 0.8%;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background: linear-gradient(-135deg, #ffffff, #ffffff);
+          /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+          /* clip-path: circle(25px at calc(0% + 45px) 45px); */
+          clip-path: circle(25px at calc(100% - 45px) 45px);
+          transition: all 0.3s ease-in-out;
+          color: black;
+        
+        }
+        #active:checked ~ .wrapper{
+          clip-path: circle(75%);
+          background-color: #202020;
+          color: black;
+        }
+        .menu-btn{
+          position: absolute;
+          z-index: 2;
+          right: 20px;
+          /* left: 20px; */
+          top: 20%;
+          height: 50px;
+          width: 50px;
+          text-align: center;
+          line-height: 50px;
+          border-radius: 50%;
+          font-size: 20px;
+          color: #000000;
+          cursor: pointer;
+          background: linear-gradient(-135deg, #ffea00,#ffea00);
+          /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+          transition: all 0.3s ease-in-out;
+        }
+        #active:checked ~ .menu-btn{
+          background: #fff;
+          color: #fbff00;
+        }
+        #active:checked ~ .menu-btn i:before{
+          content: "\f00d";
+        }
+        .wrapper ul{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-53%, -50%);
+          list-style: none;
+          text-align: center;
+          color: black;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+        .wrapper ul li{
+          margin: 15px 0;
+        }
+        .wrapper ul li a{
+          color: none;
+          text-decoration: none;
+          font-size:30px;
+          font-weight: 500;
+          padding: 5px 30px;
+          color: #000000;
+          position: relative;
+          line-height: 50px;
+          transition: all 0.3s ease;
+        }
+        .wrapper ul li a:after{
+          position: absolute;
+          content: "";
+          background: #f6ff00;
+          width: 100%;
+          height: 50px;
+          left: 0;
+          border-radius: 50px;
+          transform: scaleY(0);
+          z-index: -1;
+          transition: transform 0.3s ease;
+        }
+        .wrapper ul li a:hover:after{
+          transform: scaleY(1);
+        }
+        .wrapper ul li a:hover{
+          color: #000000;
+        }
+        input[type="checkbox"]{
+          display: none;
+        }
+        /* p{
+          margin: 0;padding: 0;
+        } */
+
+
+}
+    
+    </style>
+</head>
+<body>
+
+    <div class="preloader" id="preloader">
+        <div class="loadingspinner">
+            <div id="square1"></div>
+            <div id="square2"></div>
+            <div id="square3"></div>
+            <div id="square4"></div>
+            <div id="square5"></div>
+          </div>
+    </div>
+
+  
+
+    <div class="headerdiv">
+        <header class="header">
+            <div class="logoimageheader">
+                <img src="mainlogo.png" alt="i5CallTaxi" class="mainlogoimage">
+            </div>
+            <div class="linksheader">
+                <a href="index.html" class="homelink headerlink">Home</a>
+                <a href="#page2" class="aboutlink headerlink">About</a>
+                <a href="#page1" class="bookinglink headerlink">Booking</a>
+                <a href="contactform.html" class="contactlink headerlink">Contact</a>
+                <a href="#page5" class="Termslink headerlink">Terms</a>
+                <a href="privacypolicypage.html" class="privacylink headerlink">Privacy Policy</a>
+            </div>
+            
+            
+        </header>
+
+
+        <input type="checkbox" id="active">
+      <label for="active" class="menu-btn"><i class="fas fa-bars"></i></label>
+      <div class="wrapper">
+         <ul>
+            <li><a href="#page1">Home</a></li>
+            <li><a href="#page2">About</a></li>
+            <li><a href="#page1">Booking</a></li>
+            <li><a href="contactform.html">Contact</a></li>
+            <li><a href="#page5">Terms</a></li>
+            <li><a href="privacypolicypage.html">Privacy Policy</a></li>
+         </ul>
+      </div>
+    </div>
+
+  <div class="extra"></div>
+
+  <div class="pickupdropdatetimemain">
+
+    <div class="pickupdropinfo">
+
+      <div class="pickupinfobookingpage">
+        <div class="pickupimagebp">
+          <img src="pickup.png" alt="i5calltaxi" width="40px">
+        </div>
+        <fieldset class="pickupinfofield" id="pickupinfofield">
+          <legend>Pickup</legend>
+         <span id="pickinfobp"></span> 
+        </fieldset>
+      </div>
+
+      <hr class="sep">
+
+      <div class="dropinfobookingpage">
+
+        <div class="dropimagebp">
+          <img src="droplocatin.png" alt="i5calltaxi" width="40px">
+        </div>
+        <fieldset class="dropinfofield" id="dropinfofield">
+          <legend>Drop</legend>
+          <span id="dropinfobp"></span>
+        </fieldset>
+      </div> 
+
+    </div>
+
+    <div class="datetimeinfo">
+
+
+      <div class="pickupdatedivbookingpage">
+        <div class="dateimagebp">
+          <img src="timetable.png" alt="i5calltaxi" width="40px">
+        </div>
+        <fieldset class="dateinfofield" id="dateinfofield">
+          <legend>Pickup Date</legend>
+          <span id="pickdatebp"></span>
+        </fieldset>
+      </div>
+
+      <hr class="sep sep2">
+
+      <div class="pickuptimedivbookingpage">
+        <div class="timeimagebp">
+          <img src="clock.png" alt="i5calltaxi" width="40px">
+        </div>
+        <fieldset class="timeinfofield" id="Timeinfofield">
+          <legend>Time</legend>
+          <span id="picktimebp"></span>
+        </fieldset>
+      </div>
+
+    </div>
+
+    
+  </div>
+
+  
+  <div class="selectcabformdivmain">
+
+  <div class="selectcabformdiv">
+    <div class="formthree forminside" id="formthree">
+      <div class="selectcaboverflowdiv">
+
+          <div class="sedandzire">
+              <div class="sedandzirefirstpart">
+                  <img src="sedanicon.jpg" alt="i5calltaxisedan" width="100px" class="sedandzireimage" id="sedanimg1">
+                  <div class="mainfare">
+                      Rs - <span id="farespan1">1000</span>/-
+                  </div>
+              </div>
+              <div class="sedandziresecondpart">
+                  <p class="cardetails" style="margin: 0;padding: 0;" id="cardetails1">
+                      Sedan - 4 Seater
+                  </p>
+                  <p class="modeldetails"style="margin: 0;padding: 0;" id="modeldetails1">
+                      Model - Dzire , Xcent
+                  </p>
+                  <p class="extras"style="margin: 0;padding: 0;" id="extratext1">
+                      Extras - 13 Rs / Km After derisred RangeToll Charges, Parking Charges, Hill Station ChargesInterstate Tax Permit (if applicable).
+
+                  </p>
+                  <button class="selectcabbutton" onclick="selectcabinfo1(),toconfirmpage() " style="margin: 0;padding: 0;">
+                      Select Cab
+                  </button>
+              </div>
+
+
+
+          </div>
+
+          <div class="suvinnova">
+            <div class="sedandzirefirstpart">
+                <img src="sedan.png" alt="i5calltaxisedan" width="80px" class="sedandzireimage" id="suvimg1">
+                <div class="mainfare">
+                    Rs - <span id="farespan2">2000</span>/-
+                </div>
+            </div>
+            <div class="sedandziresecondpart">
+                <p class="cardetails"style="margin: 0;padding: 0;" id="cardetails2">
+                    SUV - 7 Seater
+                </p>
+                <p class="modeldetails"style="margin: 0;padding: 0;" id="modeldetails2">
+                    Model - Innova 
+                </p>
+                <p class="extras"style="margin: 0;padding: 0;" id="extratext2">
+                    Extras - 19 Rs / Km After derisred RangeToll Charges, Parking Charges, Hill Station ChargesInterstate Tax Permit (if applicable).
+
+                </p>
+                <button class="selectcabbutton" onclick="selectcabinfo2(),toconfirmpage()">
+                    Select Cab
+                </button>
+            </div>
+
+          </div>
+
+          <div class="sedanetios">
+              <div class="sedandzirefirstpart">
+                  <img src="sedanicon.jpg" alt="i5calltaxisedan" width="100px" class="sedandzireimage" id="sedanimg2">
+                  <div class="mainfare">
+                      Rs - <span id="farespan3">1200</span>/-
+                  </div>
+              </div>
+              <div class="sedandziresecondpart">
+                  <p class="cardetails"style="margin: 0;padding: 0;" id="cardetails3">
+                      Sedan - 4 Seater
+                  </p>
+                  <p class="modeldetails"style="margin: 0;padding: 0;" id="modeldetails3">
+                      Model - Toyota Etios
+                  </p>
+                  <p class="extras"style="margin: 0;padding: 0;" id="extratext3">
+                      Extras - 14 Rs / Km After derisred Range .Toll Charges, Parking Charges, Hill Station ChargesInterstate Tax Permit (if applicable).
+
+                  </p>
+                  <button class="selectcabbutton" onclick="selectcabinfo3(),toconfirmpage()">
+                      Select Cab
+                  </button>
+              </div>
+
+          </div>
+
+          <div class="suvxylo">
+              <div class="sedandzirefirstpart">
+                  <img src="sedan.png" alt="i5calltaxisedan" width="80px" class="sedandzireimage" id="suvimg2">
+                  <div class="mainfare">
+                      Rs - <span id="farespan4">1800</span>/-
+                  </div>
+              </div>
+              <div class="sedandziresecondpart">
+                  <p class="cardetails"style="margin: 0;padding: 0;" id="cardetails4">
+                      SUV - 7 Seater
+                  </p>
+                  <p class="modeldetails" style="margin: 0;padding: 0;" id="modeldetails4">
+                      Model - Xylo , Lodgy
+                  </p>
+                  <p class="extras"style="margin: 0;padding: 0;" id="extratext4">
+                      Extras - 18 Rs / Km After derisred RangeToll Charges, Parking Charges, Hill Station ChargesInterstate Tax Permit (if applicable).
+
+                  </p>
+                  <button class="selectcabbutton" onclick="selectcabinfo4(),toconfirmpage()">
+                      Select Cab
+                  </button>
+              </div>
+
+          </div>
+
+          
+
+      </div>
+  </div>
+  </div>
+
+  
+
+  </div>
+  
+  <div class="extra"></div>
+
+  <div class="page2" id="page2">
+    <div class="logopage2">
+        <img src="i5.png" alt="" width="100%" height="100%" class="logoimgpage2">
+    </div>
+    <div class="contentpg2">
+        <h2 class="welcomeheading">
+            Welocome To i5 Call Taxi
+        </h2>
+        <p class="contentinsidepg2">
+            the rapidly growing intercity cab service provider in Vellore. i5 Call Taxi offers convenient online booking services for customers in need of urgent outstation travel. We specialize in providing one-way drop and round trip cab services for outstation journeys, as well as offering hourly packages for travel within Vellore citys. Rest assured, all our cabs are fully equipped with air conditioning for a comfortable travel experience.
+        </p>
+        <a class="bookpg2button" href="#page1">
+            Book Now
+        </a>
+    </div>
+</div>
+
+<div class="page3" id="page3">
+    <div class="page3heads">
+        <p class="page3head">
+            We offer a variety of services to our clients.</p>
+    <p class="page3underhead">Who are in extremely love with eco friendly travelling.</p>
+    </div>
+    
+    <div class="page3divs">
+
+        <div class="firstpg3 pg3div">
+            <div class="insideheaderandimg">
+                <img src="selecttaxi.png" alt="i5calltaxi" class="insideimage" width="100px" >
+                <p class="insidehead">
+                    Track Record
+                </p>
+            </div>
+            <div class="insidecontent">
+                We have established ourselves as a prominent and fast-growing taxi service in Vellore. Our commitment to delivering punctual and high-quality service has made us the preferred choice for customers. Apart from serving the general public, we have earned a reputation for providing exceptional transportation solutions to well-known IT companies, respected BPOs, and various organizations. Our comprehensive range of travel options includes standard packages as well as lease arrangements
+            </div>
+        </div>
+
+        <div class="secondpg3 pg3div">
+            <div class="insideheaderandimg">
+                <img src="quality.png" alt="i5calltaxi" class="insideimage" width="100px" >
+                <p class="insidehead insidehead2">
+                    Quality
+                </p>
+            </div>
+            <div class="insidecontent">
+                We are committed to providing top-notch service by continuously improving our quality standards and proactively addressing customer needs. Our training sessions focus on enhancing communication skills, both written and spoken. We conduct comprehensive tests covering psychology, traffic rules, and essential road knowledge. Additionally, we instill important values such as maintaining a professional appearance, effective communication, and adhering to proper etiquette. Our drivers undergo disciplinary training to ensure they interact with customers in a courteous and respectful manner
+            </div>
+        </div>
+
+        <div class="thirdpg3 pg3div">
+            <div class="insideheaderandimg">
+                <img src="car.png" alt="i5calltaxi" class="insideimage" width="100px" >
+                <p class="insidehead">
+                    Infrastructure
+                </p>
+            </div>
+            <div class="insidecontent">
+                Our surface transport system stands out as one of the finest in India, operating seamlessly like a hub. Our centralized Control room boasts state-of-the-art wireless communication systems and mobile phones for swift and efficient communication, resulting in faster pick-ups. With advanced software and hardware, we continuously strive to ensure that every commuter's experience with Call Taxi Chennai remains unparalleled. Our company is equipped with the latest hardware systems, along with a dedicated 24/7 call center that can be reached through our provided phone numbers. 
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="tarrifpage">
+    <p class="tarrifpagehead">
+        i5 Call Taxi <br>
+        <span class="tarrifheadinside">Tarrifs</span>
+    </p>
+    <div class="tarrifdivmain">
+        <div class="tarrif1sedan tarrifdivinside">
+            <div class="carimage">
+                <div class="carimageinsideimage">
+                    <img src="swify.png" alt="i5calltaxi"  class="carimgimg">
+                </div>
+
+                
+                <div class="carinfo">
+                    <p class="modeltype">Sedan - </p>
+                    <p class="modelname">Etios , Swift , Xcent</p>
+                </div>
+            </div>
+
+            <div class="faredivtarrif">
+                <span class="onewaytext">
+                    One Way :  <br>13 Rs / Km
+                </span>
+                <span class="roundtriptext">
+                    Round Trip : <br>12 Rs / Km
+                </span>
+            </div>
+
+            <div class="insttarrif">
+                <span class="driverbatta">Driver Batta Rs : 300</span>
+                <span class="medtexttarrif">
+                    One way minimum : 130 km | Round Trip Minimum : 250km
+                </span>
+                <span class="smalltexttarrif">
+                    * Toll , Parking , State Permit Excluded
+                </span>
+            </div>
+
+        </div>
+        <div class="tarrfi2suv tarrifdivinside">
+            <div class="carimage">
+                <div class="carimageinsideimage">
+                    <img src="kindpng_5738469.png" alt="i5calltaxi" width="200px" class="carimgimg">
+                </div>
+
+                
+                <div class="carinfo">
+                    <p class="modeltype">SUV - </p>
+                    <p class="modelname">Xylo , lodgy ,Innova</p>
+                </div>
+            </div>
+
+            <div class="faredivtarrif">
+                <span class="onewaytext">
+                    One Way :  <br>19 Rs / Km
+                </span>
+                <span class="roundtriptext">
+                    Round Trip : <br>18 Rs / Km
+                </span>
+            </div>
+
+            <div class="insttarrif">
+                <span class="driverbatta">Driver Batta Rs : 400</span>
+                <span class="medtexttarrif">
+                    One way minimum : 130 km | Round Trip Minimum : 250km
+                </span>
+                <span class="smalltexttarrif">
+                    * Toll , Parking , State Permit Excluded
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page4" id="page4">
+    <div class="page4first">
+        <p class="page4irsthead">
+            Hourly Package only for Vellore City
+        </p>
+        <p class="page4firstunderhead">
+            You can call +91 7401234574 anytime for quick booking.
+        </p>
+        <img src="Screenshot__332_-removebg-preview.png" alt="i5Calltaxi" class="page4firstimage">
+    </div>
+    <div class="page4second">
+        <p class="page4secondhead">
+            24/7 Customer Support
+        </p>
+        <p class="page4secondunderhead">
+            Hourly Package only for Vellore City
+        </p>
+        <p class="page4secondminihead">
+            Fully A/C Cabs
+        </p>
+        <p class="page4undercontent">
+            All our cabs are fully equipped with Air conditioner. Toll fees, Parking Charges, Inter-State Permit charges (if any) are extra.
+        </p>
+        <a href="tel:9301303584" target="_self"><div class="callmelinkpage4">Call Us</div></a>
+
+    </div>
+</div>
+
+<div class="page5" id="page5">
+    <div class="pg5content">
+        <div class="page5head">
+            Terms And Conditions
+            <img src="terms-and-conditions.png" alt="i5calltaxi" class="pg5img">
+        </div>
+        <div class="termscontentpg5">
+            <ul class="termslistpg5">
+                <li>Toll fees, Parking Charges,Inter-State Permit charges (if any) are extra</li>
+                <li>For Round Trips : Driver bata is Rs. 300/- per day</li>
+                <li>For One way Drop Trip : Driver Bata is Rs.300/-(Rs. 600 for above 400 kms)</li>
+                <li>For Hill station Trips : Rs. 300/- Per day will be charged Additional
+                </li>
+                <li>Round Trips – Minimum running must be 250 Kms per day</li>
+                <li>One Way Drop Trips – Minimum running must be 130 Kms per day.</li>
+                <li>Waiting charges Rs.120/- per hour will be applicable for waiting in one way drop Trips</li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- <h1 class="page6head">
+    Vellore Drop Taxi - <br> Major Places
+</h1>
+
+<div class="page6">
+    
+
+    <div class="velloretochennai placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest1">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest1">Chennai</div>
+
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook1()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="velloretobangalore placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest2">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest2">Bangalore</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook2()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="velloretopondicherry placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest3">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest3">Pondicherry</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook3()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="velloretotrichy placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest4">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest4">Trichy</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook4()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="velloretocuddalore placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest5">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest5">Cuddalore</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook5()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="velloretomadurai placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest6">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest6">Madurai</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook6()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="velloretokumbakonam placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest7">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest7">Kumbakonam</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook7()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="velloretovadalur placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest8">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest8">Vadalur</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook8()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="velloretoneyveli placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest9">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest9">Neyveli</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook9()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="velloretothanjavur placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest10">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest10">Thanjavur</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook10()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="velloretokanyakumari placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest11">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest11">Kanyakumari</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook11()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="velloretotirunelveli placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest12"13>Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest12">Tirunelveli</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook12()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="velloretocoimbatore placewisecategory">
+        <div class="locationinsidepg6">
+            <div class="fromdest" id="fromdest13">Vellore</div>
+            <div class="destinationicon">
+                <img src="exchange.png" alt="i5calltaxi" class="destinationicon">
+            </div>
+            <div class="todest" id="todest13">Coimbatore</div>
+            <div class="callbuttonslocation">
+            <button class="booklocationplacewise" onclick="placewisebuttonbook13()">Book Now</button>
+            <a href="tel:8220100542"  class="calllocationplacewise">Call Now</a>
+            </div>
+        </div>
+    </div> 
+
+
+</div> -->
+
+<div class="differentcitieslinks">
+    <div class="diffcitieshead">
+        Outstation Cab Serivices
+    </div>
+    <div class="accordion">
+
+        <div class="accordion-item Vellore">
+        <input type="checkbox" id="item-10" class="inpcheck" />
+        <label for="item-10" class="accordion-header">
+          <span>Vellore Cab Service</span>
+          <span class="arrow">
+            <i class="fa-solid fa-caret-right"></i>
+          </span>
+        </label>
+        <div class="accordion-content">
+          <p class="linkptag">
+            <ul class="linklistptag">
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i1l12()"><span id="a1i1l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i1l2">Trichy</span> </a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink">Vellore To Cuddalore </a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i2l12()"><span id="a1i2l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i2l2">Pondicherry</span></a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i3l12()"><span id="a1i3l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i3l2">Madurai</span></a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i4l12()"><span id="a1i4l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i4l2">Kumbakonam</span></a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i5l12()"><span id="a1i5l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i5l2">Vadalur</span></a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i6l12()"><span id="a1i6l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i6l2">Neyveli</span></a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i7l12()"><span id="a1i7l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i7l2">Thanjavur</span></a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i8l12()"><span id="a1i8l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i8l2">Chennai</span></a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i9l12()"><span id="a1i9l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i9l2">Bangalore</span></a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i10l12()"><span id="a1i10l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i10l2">Kanyakumari</span></a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i11l12()"><span id="a1i11l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i11l2">Tirunerveli</span></a>
+              </li>
+              <li>
+                  <a href="#" class="locationptaglink" onclick="a1i12l12()"><span id="a1i12l1">Vellore</span> &nbsp; to &nbsp;<span id="a1i12l2">Coimbatore</span></a>
+              </li>
+
+            </ul>
+          </p>
+        </div>
+        </div>
+
+        <div class="accordion-item chennai">
+      <input type="checkbox" id="item-1" class="inpcheck" />
+      <label for="item-1" class="accordion-header">
+        <span>Chennai Cab Service</span>
+        <span class="arrow">
+          <i class="fa-solid fa-caret-right"></i>
+        </span>
+      </label>
+      <div class="accordion-content">
+        <p class="linkptag">
+          <ul class="linklistptag">
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i1l12()"><span id="a2i1l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i1l2">Trichy</span></a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i2l12()"><span id="a2i2l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i2l2">Cuddalore</span></a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i3l12()"><span id="a2i3l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i3l2">Pondicherry</span></a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i4l12()"><span id="a2i4l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i4l2">Madurai</span></a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i5l12()"><span id="a2i5l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i5l2">Kumbakonam</span></a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i6l12()"><span id="a2i6l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i6l2">Vadalur</span></a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i7l12()"><span id="a2i7l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i7l2">Neyveli</span></a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i8l12()"><span id="a2i2l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i2l2">Thanjavur</span></a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i9l12()"><span id="a2i9l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i9l2">Vellore</span></a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i10l12()"><span id="a2i10l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i10l2">Bangalore</span></a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i11l12()"><span id="a2i11l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i11l2">Kanyakumari</span></a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i12l12()"><span id="a2i12l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i12l2">Tirunerveli</span> </a>
+            </li>
+            <li>
+                <a href="#" class="locationptaglink" onclick="a2i13l12()"><span id="a2i13l1">Chennai</span> &nbsp; to &nbsp;<span id="a2i13l2">Coimbatore</span></a>
+            </li>
+
+          </ul>
+        </p>
+      </div>
+        </div>
+
+        <div class="accordion-item Bangalore">
+        <input type="checkbox" id="item-2" class="inpcheck"/>
+        <label for="item-2" class="accordion-header">
+          <span>Bangalore Cab Service</span>
+          <span class="arrow">
+            <i class="fa-solid fa-caret-right"></i>
+          </span>
+        </label>
+        <div class="accordion-content">
+            <p class="linkptag">
+                <ul class="linklistptag">
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i1l12()"><span id="a3i1l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i1l2">Trichy</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i2l12()"><span id="a3i2l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i2l2">Cuddalore</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i3l12()"><span id="a3i3l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i3l2">Pondicherry</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i4l12()"><span id="a3i4l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i4l2">Madurai</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i5l12()"><span id="a3i5l1">Bangalore</span>&nbsp; to <span id="a3i5l2">Kumbakonam</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i6l12()"><span id="a3i6l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i6l2">Vadalur</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i7l12()"><span id="a3i7l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i7l2">Neyveli</span> </a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i8l12()"><span id="a3i8l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i8l2">Thanjavur</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i9l12()"><span id="a3i9l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i9l2">Vellore</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i10l12()"><span id="a3i10l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i10l2">Chennai</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i11l12()"><span id="a3i11l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i11l2">Kanyakumari</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i12l12()"><span id="a3i12l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i12l2">Tirunerveli</span> </a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a3i13l12()"><span id="a3i13l1">Bangalore</span> &nbsp; to &nbsp;<span id="a3i13l2">Coimbatore</span></a>
+                  </li>
+  
+                </ul>
+              </p>
+        </div>
+        </div>
+
+        <div class="accordion-item trichy">
+        <input type="checkbox" id="item-4" class="inpcheck" />
+        <label for="item-4" class="accordion-header">
+          <span>Trichy Cab Services</span>
+          <span class="arrow">
+            <i class="fa-solid fa-caret-right"></i>
+          </span>
+        </label>
+        <div class="accordion-content">
+            <p class="linkptag">
+                <ul class="linklistptag">
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i1l12()"><span id="a4i1l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i1l2">Chennai</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i2l12()"><span id="a4i2l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i2l2">Cuddalore</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i3l12()"><span id="a4i3l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i3l2">Pondicherry</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i4l12()"><span id="a4i4l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i4l2">Madurai</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i5l12()"><span id="a4i5l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i5l2">Kumbakonam</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i6l12()"><span id="a4i6l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i6l2">Vadalur</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i7l12()"><span id="a4i7l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i7l2">Neyveli</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i8l12()"><span id="a4i8l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i8l2">Thanjavur</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i9l12()"><span id="a4i9l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i9l2">Vellore</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i10l12()"><span id="a4i10l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i10l2">Bangalore</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i11l12()"><span id="a4i11l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i11l2">Kanyakumari</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i12l12()"><span id="a4i12l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i12l2">Tirunerveli</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a4i13l12()"><span id="a4i13l1">Trichy</span> &nbsp; to &nbsp;<span id="a4i13l2">Coimbatore</span> </a>
+                  </li>
+  
+                </ul>
+            </p>
+        </div>
+        </div>
+
+        <div class="accordion-item Cuddalore">
+            <input type="checkbox" id="item-11" class="inpcheck" />
+            <label for="item-11" class="accordion-header">
+              <span>Cuddalore Cab Service</span>
+              <span class="arrow">
+                <i class="fa-solid fa-caret-right"></i>
+              </span>
+            </label>
+            <div class="accordion-content">
+              <p class="linkptag">
+                <ul class="linklistptag">
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i1l12()"><span id="a5i1l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i1l2">Trichy</span> </a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink">Cuddalore To Cuddalore </a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i2l12()"><span id="a5i2l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i2l2">Pondicherry</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i3l12()"><span id="a5i3l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i3l2">Madurai</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i4l12()"><span id="a5i4l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i4l2">Kumbakonam</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i5l12()"><span id="a5i5l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i5l2">Vadalur</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i6l12()"><span id="a5i6l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i6l2">Neyveli</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i7l12()"><span id="a5i7l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i7l2">Thanjavur</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i8l12()"><span id="a5i8l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i8l2">Chennai</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i9l12()"><span id="a5i9l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i9l2">Bangalore</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i10l12()"><span id="a5i10l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i10l2">Kanyakumari</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i11l12()"><span id="a5i11l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i11l2">Tirunerveli</span></a>
+                  </li>
+                  <li>
+                      <a href="#" class="locationptaglink" onclick="a5i12l12()"><span id="a5i12l1">Cuddalore</span> &nbsp; to &nbsp;<span id="a5i12l2">Coimbatore</span></a>
+                  </li>
+  
+                </ul>
+              </p>
+            </div>
+        </div>
+
+        <div class="accordion-item Pondicherry">
+          <input type="checkbox" id="item-13" class="inpcheck" />
+          <label for="item-13" class="accordion-header">
+            <span>Pondicherry Cab Service</span>
+            <span class="arrow">
+              <i class="fa-solid fa-caret-right"></i>
+            </span>
+          </label>
+          <div class="accordion-content">
+            <p class="linkptag">
+              <ul class="linklistptag">
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i1l12()"><span id="a6i1l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i1l2">Trichy</span></a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i2l12()"><span id="a6i2l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i2l2">Cuddalore</span></a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i3l12()"><span id="a6i3l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i3l2">Pondicherry</span></a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i4l12()"><span id="a6i4l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i4l2">Madurai</span></a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i5l12()"><span id="a6i5l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i5l2">Kumbakonam</span></a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i6l12()"><span id="a6i6l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i6l2">Vadalur</span></a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i7l12()"><span id="a6i7l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i7l2">Neyveli</span></a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i8l12()"><span id="a6i2l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i2l2">Thanjavur</span></a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i9l12()"><span id="a6i9l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i9l2">Vellore</span></a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i10l12()"><span id="a6i10l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i10l2">Bangalore</span></a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i11l12()"><span id="a6i11l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i11l2">Kanyakumari</span></a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i12l12()"><span id="a6i12l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i12l2">Tirunerveli</span> </a>
+                </li>
+                <li>
+                    <a href="#" class="locationptaglink" onclick="a6i13l12()"><span id="a6i13l1">Pondicherry</span> &nbsp; to &nbsp;<span id="a6i13l2">Coimbatore</span></a>
+                </li>
+
+              </ul>
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item Madurai">
+            <input type="checkbox" id="item-20" class="inpcheck"/>
+            <label for="item-20" class="accordion-header">
+              <span>Madurai Cab Service</span>
+              <span class="arrow">
+                <i class="fa-solid fa-caret-right"></i>
+              </span>
+            </label>
+            <div class="accordion-content">
+                <p class="linkptag">
+                    <ul class="linklistptag">
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i1l12()"><span id="a7i1l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i1l2">Trichy</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i2l12()"><span id="a7i2l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i2l2">Cuddalore</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i3l12()"><span id="a7i3l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i3l2">Pondicherry</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i4l12()"><span id="a7i4l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i4l2">Madurai</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i5l12()"><span id="a7i5l1">Madurai</span>&nbsp; to <span id="a7i5l2">Kumbakonam</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i6l12()"><span id="a7i6l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i6l2">Vadalur</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i7l12()"><span id="a7i7l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i7l2">Neyveli</span> </a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i8l12()"><span id="a7i8l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i8l2">Thanjavur</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i9l12()"><span id="a7i9l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i9l2">Vellore</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i10l12()"><span id="a7i10l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i10l2">Chennai</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i11l12()"><span id="a7i11l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i11l2">Kanyakumari</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i12l12()"><span id="a7i12l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i12l2">Tirunerveli</span> </a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a7i13l12()"><span id="a7i13l1">Madurai</span> &nbsp; to &nbsp;<span id="a7i13l2">Coimbatore</span></a>
+                      </li>
+      
+                    </ul>
+                  </p>
+            </div>
+        </div>
+
+        <div class="accordion-item Coimbatore">
+            <input type="checkbox" id="item-40" class="inpcheck" />
+            <label for="item-40" class="accordion-header">
+              <span>Coimbatore Cab Services</span>
+              <span class="arrow">
+                <i class="fa-solid fa-caret-right"></i>
+              </span>
+            </label>
+            <div class="accordion-content">
+                <p class="linkptag">
+                    <ul class="linklistptag">
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i1l12()"><span id="a8i1l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i1l2">Chennai</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i2l12()"><span id="a8i2l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i2l2">Cuddalore</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i3l12()"><span id="a8i3l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i3l2">Pondicherry</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i4l12()"><span id="a8i4l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i4l2">Madurai</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i5l12()"><span id="a8i5l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i5l2">Kumbakonam</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i6l12()"><span id="a8i6l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i6l2">Vadalur</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i7l12()"><span id="a8i7l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i7l2">Neyveli</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i8l12()"><span id="a8i8l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i8l2">Thanjavur</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i9l12()"><span id="a8i9l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i9l2">Vellore</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i10l12()"><span id="a8i10l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i10l2">Bangalore</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i11l12()"><span id="a8i11l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i11l2">Kanyakumari</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i12l12()"><span id="a8i12l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i12l2">Tirunerveli</span></a>
+                      </li>
+                      <li>
+                          <a href="#" class="locationptaglink" onclick="a8i13l12()"><span id="a8i13l1">Coimbatore</span> &nbsp; to &nbsp;<span id="a8i13l2">Coimbatore</span> </a>
+                      </li>
+      
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="footer page7">
+    <div class="imagefooter">
+        <img src="i5.png" alt="" class="footerlogo">
+    </div>
+    <div class="aboutusfooter">
+        <p class="aboutheadfooter">
+            About Us
+        </p>
+        <p class="aboutuscontent">
+            Welcome to i-5 Call Taxi, is the rapid growing Intercity cab service provider in Vellore i-5 Call Taxi is an online cab booking services for the customer who need call taxi urgently for Outstation travels.
+        </p>
+    </div>
+    <div class="usefullinksfooter">
+        <p class="usefullinksheadfooter">
+            Useful Links
+        </p>
+        <a href="index.html" class="usefullink1">Home</a>
+        <a href="index.html" class="usefullink1">Booking</a>
+        <a href="contactform.html" class="usefullink1">Contact</a>
+        <a href="#page5" class="usefullink1">Terms and Conditions</a>
+        <a href="privacypolicypage.html" class="usefullink1">Privacy Policy</a>
+
+    </div>
+
+</div>
+  
+
+<script src="script.js">
+
+</script>
+<script>
+    var loader = document.getElementById("preloader");
+window.addEventListener("load",function(){
+    loader.style.display = "none";
+});
+</script>
+</body>
+</html>
